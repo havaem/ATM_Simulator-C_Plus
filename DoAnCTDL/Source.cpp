@@ -508,7 +508,7 @@ void showLoginUser(LISTADMIN) {
 		gotoxy(42, 17);  cout << "* ** ** ** ** ** ** *";
 		gotoxy(42, 18); GREEN cout << "ID    :";
 		gotoxy(42, 19); GREEN cout << "PIN   :";
-		gotoxy(52, 18); GREEN cin >> sUser;
+		gotoxy(52, 18); WHITE cin >> sUser;
 		gotoxy(52, 19); WHITE inputPassword(sPassword);
 		gotoxy(41, 20);
 		if (checkLoginUser(sUser, sPassword, CALLLIST)) {

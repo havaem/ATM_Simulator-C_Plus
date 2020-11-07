@@ -54,11 +54,5 @@ public:
 	friend bool operator!=(User a, User b) {
 		return (a.getID() != b.getID());
 	}
-	/*for (Node<DataType>* pWalker = _pHead; pWalker; pWalker = pWalker->_pNext) {
-		if (pWalker->_data * data) {
-			pWalker->_data = data;
-			return;
-		}
-	}*/
 };
 

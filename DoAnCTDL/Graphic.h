@@ -35,7 +35,6 @@ void gotoxy(int _iX, int _iY)
 	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleCursorPosition(hConsoleOutput, Cursor_an_Pos);
 }
-
 void ToMau(int _iX, int _iY, string _sA, int _iColor) // x, y là tọa độ con trỏ cần nhảy đến để viết, a là chuỗi cần truyền vào, color là màu truyền vào.
 {
 	gotoxy(_iX, _iY);

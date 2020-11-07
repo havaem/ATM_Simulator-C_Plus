@@ -30,7 +30,7 @@ void loadlistLogin(LinkedList<demLogin>& listLogin);
 ********************************************************/
 void showMain(LISTADMIN);
 void showAccessAdmin(LISTADMIN);
-void showAccessUser(LISTADMIN,string sUserNOW);
+void showAccessUser(LISTADMIN,string sUserNow);
 void showLoginUser(LISTADMIN);
 void showLoginAdmin(LISTADMIN);
 
@@ -45,11 +45,11 @@ void adminShowUser(LISTADMIN);
 /******************************************************
 * Chức năng của user 
 *******************************************************/
-void userXemSoDu(LISTADMIN,string sUserNOW);
-void userRutTien(LISTADMIN, string sUserNOW);
-void userChuyenTien(LISTADMIN, string sUserNOW);
-void userNoiDungGD(LISTADMIN, string sUserNOW);
-void userDoiMaPin(LISTADMIN, string sUserNOW);
+void userXemSoDu(LISTADMIN,string sUserNow);
+void userRutTien(LISTADMIN, string sUserNow);
+void userChuyenTien(LISTADMIN, string sUserNow);
+void userNoiDungGD(LISTADMIN, string sUserNow);
+void userDoiMaPin(LISTADMIN, string sUserNow);
 
 /*****************************************************
 * Hàm cập nhật lại database trong file txt
@@ -64,7 +64,6 @@ void updateListLogin(LISTADMIN);
 * Hàm khởi tạo khung
 *******************************************************/
 void setKhung(LISTADMIN);
-
 /******************************************************
 * Hàm lấy thời gian 
 *******************************************************/
@@ -76,7 +75,6 @@ const string currentDateTime() {
 	strftime(buf, sizeof(buf), " %X ngày %d tháng %m năm %Y", &tstruct);
 	return buf;
 }
-
 /******************************************************
 * Những hàm xử lý các công việc riêng 
 *******************************************************/
@@ -516,8 +514,8 @@ void showLoginUser(LISTADMIN) {
 			Sleep(200);
 			ClearSceen
 			setKhung(CALLLIST);
-			string sUserNOW = sUser;
-			showAccessUser(CALLLIST, sUserNOW);
+			string sUserNow = sUser;
+			showAccessUser(CALLLIST, sUserNow);
 		}
 		else {
 			BanUser z(sUser, "");
@@ -556,7 +554,7 @@ void showLoginUser(LISTADMIN) {
 		}
 	}
 }
-void showAccessUser(LISTADMIN,string sUserNOW) {
+void showAccessUser(LISTADMIN,string sUserNow) {
 	setKhung(CALLLIST);
 	ToMau(32, 13, "* * * * * * * * * *MENU* * * * * * * * * *", 14);
 	ToMau(40, 14, "1. Xem thông tin tài khoản", 202);
@@ -626,17 +624,17 @@ void showAccessUser(LISTADMIN,string sUserNOW) {
 		}
 	} while (iChoose != 3);
 	ClearSceen
-		if (iToaDo == 14) userXemSoDu(CALLLIST, sUserNOW);
-		else if (iToaDo == 15) userRutTien(CALLLIST, sUserNOW);
-		else if (iToaDo == 16) userChuyenTien(CALLLIST, sUserNOW);
-		else if (iToaDo == 17) userNoiDungGD(CALLLIST, sUserNOW);
-		else if (iToaDo == 18) userDoiMaPin(CALLLIST, sUserNOW);
+		if (iToaDo == 14) userXemSoDu(CALLLIST, sUserNow);
+		else if (iToaDo == 15) userRutTien(CALLLIST, sUserNow);
+		else if (iToaDo == 16) userChuyenTien(CALLLIST, sUserNow);
+		else if (iToaDo == 17) userNoiDungGD(CALLLIST, sUserNow);
+		else if (iToaDo == 18) userDoiMaPin(CALLLIST, sUserNow);
 	else if (iToaDo == 19) showLoginUser(CALLLIST);
 }
-void userXemSoDu(LISTADMIN,string sUserNOW) {
+void userXemSoDu(LISTADMIN,string sUserNow) {
 	setKhung(CALLLIST);
 	string sAccountNumber, sName, sWallet, sType;
-	User ttmp(sUserNOW,"",0,"");
+	User ttmp(sUserNow,"",0,"");
 	User tmp = listUser.search2(ttmp);
 	ToMau(32, 13, "	* * * * * * * * * * * * * * * * * * * * *", 14);
 	ToMau(38, 14, "1.Số tài khoản: ", 14);
@@ -654,13 +652,13 @@ void userXemSoDu(LISTADMIN,string sUserNOW) {
 	if (_cA != '+') {
 		ClearSceen
 			setKhung(CALLLIST);
-		showAccessUser(CALLLIST, sUserNOW);
+		showAccessUser(CALLLIST, sUserNow);
 	}
 }
-void userRutTien(LISTADMIN, string sUserNOW) {
+void userRutTien(LISTADMIN, string sUserNow) {
 	setKhung(CALLLIST);
 	string sAccountNumber, sName, sWallet, sType;
-	User ttmp(sUserNOW, "", 0, "");
+	User ttmp(sUserNow, "", 0, "");
 	User tmp = listUser.search2(ttmp);
 	ToMau(32, 13, "	* * * * * * * * * * * * * * * * * * * * *", 14);
 	ToMau(34, 14, "[50000] ", 32);
@@ -751,14 +749,14 @@ void userRutTien(LISTADMIN, string sUserNOW) {
 	else if (iToaDo == 16) checkRutTien(CALLLIST, 200000, tmp);
 	else if (iToaDo == 17) checkRutTien(CALLLIST, 400000, tmp);
 	else if (iToaDo == 18) checkRutTien(CALLLIST, 500000, tmp);
-	else if (iToaDo == 20) { ClearSceen showAccessUser(CALLLIST, sUserNOW); }
+	else if (iToaDo == 20) { ClearSceen showAccessUser(CALLLIST, sUserNow); }
 	else if (iToaDo == 19) {
 		gotoxy(73, 18); int iwall=0; cin >> iwall;
 		checkRutTien(CALLLIST, iwall, tmp);
 	}
 }
-void userChuyenTien(LISTADMIN, string sUserNOW) {
-	User tmp1(sUserNOW, "", 0, "");
+void userChuyenTien(LISTADMIN, string sUserNow) {
+	User tmp1(sUserNow, "", 0, "");
 	User tmp11 = listUser.search2(tmp1);
 	string sUserReceive = "";
 	long long llNumberMoneyTranferred;
@@ -772,7 +770,7 @@ void userChuyenTien(LISTADMIN, string sUserNOW) {
 	ToMau(30, 19, "	* * * * * * * * * * * * * * * * * * * * *", 14);
 	gotoxy(50, 14); cin >> sUserReceive;
 	User tmp2(sUserReceive, "", 0, "");
-	if (listUser.search1(tmp2) && sUserNOW!=sUserReceive) {
+	if (listUser.search1(tmp2) && sUserNow!=sUserReceive) {
 		User tmp22 = listUser.search2(tmp2);
 		gotoxy(50, 16); cout << tmp22.getName();
 		gotoxy(50, 17); cin >> llNumberMoneyTranferred;
@@ -797,20 +795,20 @@ void userChuyenTien(LISTADMIN, string sUserNOW) {
 			ToMau(34, 18, "Vui lòng nhập lại! Tiền bạn chưa đủ hoặc không phải bội 50000", 4);
 			Sleep(2000);
 			ClearSceen
-				showAccessUser(CALLLIST, sUserNOW);
+				showAccessUser(CALLLIST, sUserNow);
 		}
 	}
 	else {
 		ToMau(34, 18, "Sai định dạng hoặc sai số tài khoản!!!!", 4);
 		Sleep(2000);
 		ClearSceen
-			showAccessUser(CALLLIST, sUserNOW);
+			showAccessUser(CALLLIST, sUserNow);
 
 	}
 }
-void userNoiDungGD(LISTADMIN, string sUserNOW) {
+void userNoiDungGD(LISTADMIN, string sUserNow) {
 	resizeConsole(1027, 600);
-	History noti1("", sUserNOW, sUserNOW);
+	History noti1("", sUserNow, sUserNow);
 	LinkedList<History> tmp;
 	listLog.search3(noti1, tmp);
 	int iNumberLines = 4;
@@ -844,15 +842,15 @@ void userNoiDungGD(LISTADMIN, string sUserNOW) {
 		resizeConsole(800, 600);
 		ClearSceen
 			setKhung(CALLLIST);
-		showAccessUser(CALLLIST, sUserNOW);
+		showAccessUser(CALLLIST, sUserNow);
 	}
 }
-void userDoiMaPin(LISTADMIN, string sUserNOW) {
-	TheTu a(sUserNOW, "");
+void userDoiMaPin(LISTADMIN, string sUserNow) {
+	TheTu a(sUserNow, "");
 	a=listTheTu.search4(a);
 	setKhung(CALLLIST);
 	string sPinNow = a.getPIN();
-	TheTu ttmp(sUserNOW, a.getPIN());
+	TheTu ttmp(sUserNow, a.getPIN());
 	TheTu tmp = listTheTu.search2(ttmp);
 	string sPinInput;
 	string sNewPin, sNewPin1;
@@ -867,7 +865,7 @@ void userDoiMaPin(LISTADMIN, string sUserNOW) {
 			ToMau(40, 20, "Mã pin mới có 6 ký tự!!", 4);
 			Sleep(1000);
 			ClearSceen
-				showAccessUser(CALLLIST, sUserNOW);
+				showAccessUser(CALLLIST, sUserNow);
 		}
 		ToMau(34, 16, "Nhập lại mã pin mới:", 6);
 		gotoxy(55, 16); cin >> sNewPin1;
@@ -875,7 +873,7 @@ void userDoiMaPin(LISTADMIN, string sUserNOW) {
 			ToMau(40, 20, "2 mã pin bạn nhập vào khác nhau!!", 4);
 			Sleep(1000);
 			ClearSceen
-			showAccessUser(CALLLIST, sUserNOW);
+			showAccessUser(CALLLIST, sUserNow);
 		}
 		else {
 			ToMau(40, 20, "Bạn đã đổi mã pin thành công!!", 4);
@@ -884,14 +882,14 @@ void userDoiMaPin(LISTADMIN, string sUserNOW) {
 			updateTheTu(CALLLIST);
 			Sleep(2000);
 			ClearSceen
-			showAccessUser(CALLLIST, sUserNOW);
+			showAccessUser(CALLLIST, sUserNow);
 		}
 	}
 	else {
 		ToMau(40, 20, "Mã pin hiện tại bạn nhập sai!!!", 4);
 		Sleep(1000);
 		ClearSceen
-		showAccessUser(CALLLIST, sUserNOW);
+		showAccessUser(CALLLIST, sUserNow);
 	}
 }
 
